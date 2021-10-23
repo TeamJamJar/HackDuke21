@@ -86,7 +86,10 @@
             device_id = res.id;
             data.device_id = device_id
         }
-        setId()
+        setId().then(()=>{
+            setData();
+            socket.emit('formchange', {roomid, data});
+        })
         
     </script>
 

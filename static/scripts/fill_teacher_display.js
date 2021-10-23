@@ -4,6 +4,7 @@ var display = document.getElementById("body")
 
 function updateData(){
     display.innerHTML = data;
+    //addData(chart, "boob", [data, data])
 }
 //refreshing stuff
 var socket = io();
