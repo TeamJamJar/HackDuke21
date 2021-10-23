@@ -36,41 +36,35 @@
                 </div>
             </div>
         </div>
-        <script>
-            var slider1 = document.getElementById("range1");
-            var slider2 = document.getElementById("range2");
-            var slider3 = document.getElementById("range3");
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var slider1 = document.getElementById("range1");
+        var slider2 = document.getElementById("range2");
 
+        var output1 = document.getElementById("val1");
+        var output2 = document.getElementById("val2");
 
-            var output1 = document.getElementById("val1");
-            var output2 = document.getElementById("val2");
-            var output3 = document.getElementById("val3");
+        output1.innerHTML = slider1.value; // Display the default slider value
+        output2.innerHTML = slider1.value;
 
-            // Update the current slider value (each time you drag the slider handle)
-            slider1.oninput = function () {
-                output1.innerHTML = this.value + "%";
-            }
+        var socket = io()
+        // Update the current slider value (each time you drag the slider handle)
+        slider1.oninput = function() {
+            output1.innerHTML = this.value;
+            socket.emit('formchange', this.value);
+            console.log("emmitted")
+        }
+        
+        slider2.oninput = function() {
+        output2.innerHTML = this.value;
+        }
+    </script>
 
-            slider2.oninput = function () {
-                output2.innerHTML = this.value + "%";
-            }
-
-            slider3.oninput = function () {
-                output3.innerHTML = this.value + "%";
-            }
-        </script>
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-</body>
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
 </html>
