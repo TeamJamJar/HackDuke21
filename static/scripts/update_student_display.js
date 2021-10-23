@@ -7,6 +7,5 @@ form.addEventListener('change', (e)=> {
     e.preventDefault();
     if (input.value) {
         socket.emit('formchange', input.value);
-        input.value = '';
     }
 });
