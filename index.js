@@ -16,8 +16,7 @@ io.on('connection', (socket) =>{
     console.log("connection established");
 });
 server.listen(port, () => {
-    console.log('listening on *:3000');
-    console.log('active on 5000');
+    console.log(`listening on ${port}`);
 });
 
 //Use middleware
@@ -27,3 +26,8 @@ app.use(express.static(path.join(__dirname, 'static')));
 //Use routes
 const homeRoutes = require('./routes/home.js');
 app.use('/', homeRoutes);
+
+//404 message
+app.use((req,res)=>{
+    res.sendFile(path.join(__dirname,'public','404.html'));
+});

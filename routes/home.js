@@ -7,4 +7,12 @@ router.get('/', (req,res)=>{
     res.sendFile(path.join(homePath,'home.html'))
 });
 
+router.get('/teacher', (req,res)=>{
+    res.sendFile(path.join(homePath,'teacher.html'))
+});
+
+router.get('/student', (req,res)=>{
+    res.sendFile(path.join(homePath,'student.html'))
+});
+
 module.exports = router;
