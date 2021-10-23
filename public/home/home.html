@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 
     <title>JamJar!</title>
   </head>
@@ -21,11 +22,14 @@
 			<div class="col" style="padding-top: 40px;text-align: center;">
                 <h1>Join a Meeting 🔍</h1>
                 <label for="id"><h2>ID:</h2></label>
-                <input type="text" id="meeting_id" name="meeting_id"><br><br>
+                <div id="idcheck">
+                    <input type="text" id="meeting_id" name="meeting_id"></input>
+                    <a onclick="sendaway()" class="btn btn-primary" id="join_button">Join</a>
+                </div>
 			</div>
             <div class="col" style="padding-top: 40px; text-align: center;">
                 <h1>Create a Meeting 👶</h1>
-                <button>Start New</button>
+                <a href="/create" class="btn btn-primary" id="createbutton">Start New</a>
 			</div>
 		</div>
     </div>
@@ -35,5 +39,17 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    <script>
+        $('#meeting_id').keypress(function(e) {
+                //check if enter is pressed
+            if(e.keyCode == 13) {
+                //click your link
+                    window.location.href = document.getElementById('meeting_id').value
+                }   
+            });
+        function sendaway() {
+            window.location.href = document.getElementById('meeting_id').value
+            };
+    </script>
+</body>
 </html>
