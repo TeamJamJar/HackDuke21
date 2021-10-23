@@ -15,22 +15,34 @@
 		<div class="row">
 			<div class="col" style="padding-top: 40px; padding-bottom: 50px; text-align: center;">
                 <div class="slidecontainer">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange1">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="range1">
                 </div>
+                <p id="val1"></p>
 			</div>
 			<div class="col" style="padding-top: 40px; padding-bottom: 50px; text-align: center;">
                 <div class="slidecontainer">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange2">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="range2">
                 </div>
+                <p id="val2"></p>
             </div>
     </div>
     <script>
-        var slider = document.getElementById("myRange1");
-        output.innerHTML = slider.value; // Display the default slider value
+        var slider1 = document.getElementById("range1");
+        var slider2 = document.getElementById("range2");
+
+        var output1 = document.getElementById("val1");
+        var output2 = document.getElementById("val2");
+
+        output1.innerHTML = slider1.value; // Display the default slider value
+        output2.innerHTML = slider1.value;
 
         // Update the current slider value (each time you drag the slider handle)
-        slider.oninput = function() {
-        output.innerHTML = this.value;
+        slider1.oninput = function() {
+        output1.innerHTML = this.value;
+        }
+        
+        slider2.oninput = function() {
+        output2.innerHTML = this.value;
         }
     </script>
 
