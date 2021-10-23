@@ -54,12 +54,11 @@
             );
 
             function addData(chart, label, data) {
-                chart.data.labels.push(label);
-                chart.data.datasets.forEach((dataset) => {
-                    dataset.data.push(data);
-                });
+                chart.data.labels.push(Math.random()*10);
+                chart.data.datasets[0].data.push(Math.random()*10);
+                console.log(chart.data.datasets[0].data)
+
                 chart.update();
-                console.log("wow, new thing just dropped")
             }
         </script>
         <script src="/scripts/fill_teacher_display.js"></script>
