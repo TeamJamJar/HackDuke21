@@ -1,2 +1,3 @@
 # HackDuke21
-Classroom Engagement Monitoring
+Classroom Engagement For the Modern Age
+
