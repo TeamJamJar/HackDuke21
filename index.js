@@ -14,9 +14,8 @@ const io = require("socket.io")(server);
 module.exports.io = io; //export io so that other files can use it.
 io.on('connection', (socket) =>{
     console.log("connection established");
-    socket.on('formchange', (data)=>{
-        console.log("form changed")
-        io.emit('formchange', data);
+    socket.on('formchange', (sent)=>{
+        io.emit(`/host${sent.roomid}`, sent.data);
     })
 });
 server.listen(port, () => {

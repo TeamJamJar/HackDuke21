@@ -28,6 +28,7 @@
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script>
+        const roomid = window.location.pathname
         var slider1 = document.getElementById("range1");
         var slider2 = document.getElementById("range2");
 
@@ -41,7 +42,7 @@
         // Update the current slider value (each time you drag the slider handle)
         slider1.oninput = function() {
             output1.innerHTML = this.value;
-            socket.emit('formchange', this.value);
+            socket.emit('formchange', {roomid, data: this.value});
             console.log("emmitted")
         }
         

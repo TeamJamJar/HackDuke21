@@ -28,22 +28,22 @@ router.get('/create', (req,res)=>{
     res.redirect(`/host/${id}`);
 });
 
-router.get('/host/:roomid', (req,res)=>{
+router.get('/host/:roomid', (req,res,next)=>{
     id = parseInt(req.params.roomid);
     console.log("trying to host")
     console.log(roomIds)
     if(roomIds.has(id)){
         return res.sendFile(path.join(homePath,'teacher.html'))
     }
-    return res.redirect('/');
+    next()
 });
 
-router.get('/:roomid', (req,res)=>{
+router.get('/:roomid', (req,res,next)=>{
     id = parseInt(req.params.roomid);
     if(roomIds.has(id)){
         return res.sendFile(path.join(homePath,'student.html'))
     }
-    return res.redirect('/');
+    next();
 });
 
 module.exports = router;
