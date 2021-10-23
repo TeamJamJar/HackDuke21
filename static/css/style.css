@@ -1,0 +1,72 @@
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+  }
+  
+.descrip {
+
+    width: 100%; /* Full-width */
+}
+
+#idcheck {
+    float: right;
+    line-height: 60px;
+    margin: 0 50px 0 0;
+}
+#join_button {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    height: 30px;
+    width: 80px;
+    text-align: center; margin: auto;
+    line-height: 15px;
+    vertical-align: middle;
+    position: relative;
+    color: #ffff;
+}
+
+#meeting_id {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 20px;
+    line-height: 20px;
+    width: 200px;
+    vertical-align: middle;
+}
+
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    height: 400px;
+    -webkit-appearance: slider-vertical;
+    background: #b84461; 
+    cursor: pointer; 
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #b84461; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #04AA6D; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+input, button {
+    margin:0;
+}
