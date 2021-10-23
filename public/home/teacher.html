@@ -6,11 +6,63 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
     </head>
-    <body id="body">
+    <body>
+        <h1 id="body">PASTA</h1>
+        <div>
+            <canvas id="chart"></canvas>
+        </div>
+
         <script src="/socket.io/socket.io.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const DATA_COUNT = 7;
+            const NUMBER_CFG = {count: DATA_COUNT, rmin: 1, rmax: 1, min: 0, max: 100};
+
+            const labels = [1,2,3,4,5,6,7];
+            const rawdata = {
+            labels: labels,
+            datasets: [
+                {
+                label: 'Student 1',
+                data: [3,2,6,5,3,2,1],
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgb(255,177,193)',
+                }
+            ]
+            };
+          const config = {
+            type: 'scatter',
+            data: rawdata,
+            options: {
+                responsive: true,
+                plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Scatter Chart'
+                }
+                }
+            },
+            };
+
+            const chart = new Chart(
+                document.getElementById('chart'),
+                config
+            );
+
+            function addData(chart, label, data) {
+                chart.data.labels.push(label);
+                chart.data.datasets.forEach((dataset) => {
+                    dataset.data.push(data);
+                });
+                chart.update();
+                console.log("wow, new thing just dropped")
+            }
+        </script>
         <script src="/scripts/fill_teacher_display.js"></script>
-        <script src="https://www.jsdelivr.com/package/npm/chart.js"></script>
+
     </body>
 </html>
