@@ -4,6 +4,7 @@ const path = require('path');
 const homePath = path.join(__dirname,'../','public','home');
 
 roomIds = new Set();
+studentIds = new Set();
 
 router.get('/', (req,res)=>{
     res.sendFile(path.join(homePath,'home.html'))
@@ -19,7 +20,6 @@ router.get('/student', (req,res)=>{
 
 router.get('/create', (req,res)=>{
     console.log("creating")
-    taken = true
     id = Math.floor(Math.random() * 999999);
     while(roomIds.has(id)){
         id +=1;
@@ -45,5 +45,14 @@ router.get('/:roomid', (req,res,next)=>{
     }
     next();
 });
+
+router.get('/identifiers', (req,res,next)=>{
+    id = Math.floor(Math.random() * 99999999);
+    while(studentIds.has(id)){
+        id +=1;
+    }
+    studentIds.add(id);
+    res.send({id});
+})
 
 module.exports = router;
