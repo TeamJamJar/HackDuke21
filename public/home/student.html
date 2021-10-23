@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <script src="/socket.io/socket.io.js"></script>
     <div class="container-fluid h-100" style="padding-top: 0px; position: relative;">
         <div class="row" style="height: 100%;">
             <div class="col-4" style="padding-top: 40px; padding-bottom: 50px; text-align: center;">
@@ -38,6 +39,7 @@
         </div>
     </div>
     <script>
+        var socket = io()
         const roomid = window.location.pathname
         var slider1 = document.getElementById("range1");
         var slider2 = document.getElementById("range2");
@@ -51,6 +53,8 @@
         // Update the current slider value (each time you drag the slider handle)
         slider1.oninput = function () {
             output1.innerHTML = this.value + "%";
+            socket.emit('formchange', {roomid, data: this.value});
+            console.log("emmitted")
         }
 
         slider2.oninput = function () {
@@ -59,18 +63,6 @@
 
         slider3.oninput = function () {
             output3.innerHTML = this.value + "%";
-        }
-
-        var socket = io()
-        // Update the current slider value (each time you drag the slider handle)
-        slider1.oninput = function() {
-            output1.innerHTML = this.value;
-            socket.emit('formchange', {roomid, data: this.value});
-            console.log("emmitted")
-        }
-        
-        slider2.oninput = function() {
-        output2.innerHTML = this.value;
         }
     </script>
 
