@@ -17,24 +17,6 @@ router.get('/student', (req,res)=>{
     res.sendFile(path.join(homePath,'student.html'))
 });
 
-router.get('/host/:roomid', (req,res)=>{
-    id = parseInt(req.params.roomid);
-    console.log("trying to host")
-    console.log(roomIds)
-    if(roomIds.has(id)){
-        return res.send(path.join(homePath,'teacher.html'))
-    }
-    return res.redirect('/');
-});
-
-router.get('/join/:roomid', (req,res)=>{
-    id = parseInt(req.params.roomid);
-    if(roomIds.has(id)){
-        return res.send(path.join(homePath,'student.html'))
-    }
-    return res.redirect('/');
-});
-
 router.get('/create', (req,res)=>{
     console.log("creating")
     taken = true
@@ -44,6 +26,24 @@ router.get('/create', (req,res)=>{
     }
     roomIds.add(id)
     res.redirect(`/host/${id}`);
+});
+
+router.get('/host/:roomid', (req,res)=>{
+    id = parseInt(req.params.roomid);
+    console.log("trying to host")
+    console.log(roomIds)
+    if(roomIds.has(id)){
+        return res.sendFile(path.join(homePath,'teacher.html'))
+    }
+    return res.redirect('/');
+});
+
+router.get('/:roomid', (req,res)=>{
+    id = parseInt(req.params.roomid);
+    if(roomIds.has(id)){
+        return res.sendFile(path.join(homePath,'student.html'))
+    }
+    return res.redirect('/');
 });
 
 module.exports = router;
