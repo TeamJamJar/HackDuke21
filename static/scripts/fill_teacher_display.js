@@ -9,6 +9,7 @@ function updateData(){
 //refreshing stuff
 var socket = io();
 socket.on(link_name, (newInfo)=>{
+    console.log(newInfo)
     console.log("updating")
     data = newInfo
     updateData()

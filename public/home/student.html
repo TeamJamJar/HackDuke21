@@ -39,6 +39,8 @@
         </div>
     </div>
     <script>
+        var device_id
+        var data = {device_id: 0, understanding: 0, speed: 0, engagement: 0, notification: ""}
         var socket = io()
         const roomid = window.location.pathname
 
@@ -46,26 +48,49 @@
         var slider2 = document.getElementById("range2");
         var slider3 = document.getElementById("range3");
 
-        socket.emit('formchange', {roomid, data: slider1.value});
-
         var output1 = document.getElementById("val1");
         var output2 = document.getElementById("val2");
         var output3 = document.getElementById("val3");
+        
+        function setData(){
+           data.understanding = slider1.value
+           data.speed = slider2.value
+           data.engagement = slider3.value
+        }
 
         // Update the current slider value (each time you drag the slider handle)
         slider1.oninput = function () {
             output1.innerHTML = this.value + "%";
-            socket.emit('formchange', {roomid, data: this.value});
+            setData()
+            socket.emit('formchange', {roomid, data});
             console.log("emmitted")
         }
 
         slider2.oninput = function () {
             output2.innerHTML = this.value + "%";
+            setData()
+            socket.emit('formchange', {roomid, data});
+            console.log("emmitted")
         }
 
         slider3.oninput = function () {
             output3.innerHTML = this.value + "%";
+            setData()
+            socket.emit('formchange', {roomid, data});
+            console.log("emmitted")
         }
+
+        async function setId(){
+            res = await fetch('/identifiers')
+            res = await res.json()
+            device_id = res.id;
+            data.device_id = device_id
+        }
+        setId().then(()=>{
+            setData();
+            socket.emit('formchange', {roomid, data});
+        })
+        
     </script>
 
     <!-- Optional JavaScript -->
