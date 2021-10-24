@@ -1,7 +1,6 @@
-var data = 0;
 const link_name = window.location.pathname
 
-function updateData(){
+function updateChart(data){
 
     if (!(DEVICE_IDS.has(data.device_id))) {
 
@@ -39,13 +38,11 @@ function updateData(){
     }
 
     chart.update();
-    console.log(chart.data.datasets)
+    //console.log(chart.data.datasets)
 }
 //refreshing stuff
 var socket = io();
 socket.on(link_name, (newInfo)=>{
-    console.log(newInfo)
     console.log("updating")
-    data = newInfo
-    updateData()
+    updateChart(newInfo)
 })

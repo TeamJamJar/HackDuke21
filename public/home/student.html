@@ -82,9 +82,9 @@
             socket.emit('formchange', {roomid, data});
 
             setInterval(()=>{
-            setData()
-            socket.emit('formchange', {roomid, data});
-            console.log("emmitted")
+                setData()
+                socket.emit('formchange', {roomid, data});
+                console.log("emmitted")
             }, 100)
         })
         
