@@ -77,15 +77,17 @@
             device_id = res.id;
             data.device_id = device_id
         }
+        var worker = new Worker('/scripts/worker.js');
         setId().then(()=>{
             setData();
             socket.emit('formchange', {roomid, data});
-
-            setInterval(()=>{
+            
+            var t1 = 0;
+            worker.onmessage = function() {
                 setData()
                 socket.emit('formchange', {roomid, data});
                 console.log("emmitted")
-            }, 100)
+            }
         })
         
     </script>
