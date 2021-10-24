@@ -41,6 +41,17 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid h-100" style="padding-top: 0px; position: relative;">
+        <div class="row" style="height: 100%;">
+            <div class="col" style="padding-top: 40px; padding-bottom: 50px; text-align: center;">
+                <div style="width: 100%;">
+                    <input type="text" id="question" name="question"></input>
+                    <a onclick="notif()" class="btn btn-primary" id="join_button"  style="color: white;">Send</a>
+                </div>
+            </div>  
+        </div>  
+    </div>  
+    <button></button>
     <script>
         var device_id
         var data = {device_id: 0, understanding: 0, speed: 0, engagement: 0, notification: ""}
@@ -115,6 +126,15 @@
             device_id = res.id;
             data.device_id = device_id
         }
+
+        function notif() {
+            const note = document.getElementById('question').value;
+            setData();
+            data.notification = note;
+            socket.emit('formchange', {roomid, data});
+            data.notification = "";
+        };
+
         var worker = new Worker('/scripts/worker.js');
         setId().then(()=>{
             setData();
