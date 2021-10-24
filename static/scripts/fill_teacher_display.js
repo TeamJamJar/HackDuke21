@@ -39,13 +39,10 @@ function updateData(){
     }
 
     chart.update();
-    console.log(chart.data.datasets)
 }
 //refreshing stuff
 var socket = io();
 socket.on(link_name, (newInfo)=>{
-    console.log(newInfo)
-    console.log("updating")
     data = newInfo
     updateData()
 })

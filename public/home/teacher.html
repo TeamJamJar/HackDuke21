@@ -24,9 +24,9 @@
             type: 'scatter',
             data: {},
             options: {
+                animation: false,
                 showLine: true,
                 responsive: true,
-                plugins: {
                 legend: {
                     position: 'top',
                 },
@@ -38,7 +38,9 @@
                     point:{
                         radius: 0
                     }
-                }
+                },
+                animation: {
+                    duration: 0
                 }
             },
             };
