@@ -61,30 +61,16 @@
         // Update the current slider value (each time you drag the slider handle)
         slider1.oninput = function () {
             output1.innerHTML = this.value + "%";
-            setData()
-            socket.emit('formchange', {roomid, data});
-            console.log("emmitted")
         }
 
         slider2.oninput = function () {
             output2.innerHTML = this.value + "%";
-            setData()
-            socket.emit('formchange', {roomid, data});
-            console.log("emmitted")
         }
 
         slider3.oninput = function () {
             output3.innerHTML = this.value + "%";
-            setData()
-            socket.emit('formchange', {roomid, data});
-            console.log("emmitted")
         }
-
-        setInterval(()=>{
-            setData()
-            socket.emit('formchange', {roomid, data});
-            console.log("emmitted")
-        }, 1000)
+        
         async function setId(){
             res = await fetch('/identifiers')
             res = await res.json()
@@ -94,6 +80,12 @@
         setId().then(()=>{
             setData();
             socket.emit('formchange', {roomid, data});
+
+            setInterval(()=>{
+            setData()
+            socket.emit('formchange', {roomid, data});
+            console.log("emmitted")
+            }, 100)
         })
         
     </script>
