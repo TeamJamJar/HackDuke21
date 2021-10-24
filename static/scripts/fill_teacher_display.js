@@ -1,7 +1,7 @@
 const link_name = window.location.pathname
 
 function updateChart(data){
-
+    console.log(DEVICE_IDS);
     const diff = ((new Date())-startTime)/1000;
 
     if (!(DEVICE_IDS.has(data.device_id))) {
@@ -41,12 +41,13 @@ function updateChart(data){
         chart.data.datasets[ei].data.push([diff, data.engagement])
         chart.data.datasets[si].data.push([diff, data.speed])
     }
-    chart.update();
-    //console.log(chart.data.datasets)
+    console.log(chart.data.datasets)
+    
 }
 //refreshing stuff
 var socket = io();
 socket.on(link_name, (newInfo)=>{
     console.log("new")
     updateChart(newInfo)
+    chart.update()
 })
