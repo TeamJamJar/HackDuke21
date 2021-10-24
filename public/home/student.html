@@ -19,22 +19,25 @@
         <div class="row" style="height: 100%;">
             <div class="col-4" style="padding-top: 40px; padding-bottom: 50px; text-align: center;">
                 <h6>Understanding</h6>
-                <p id="val1" class="descrip">50%</p>
                 <input type="range" min="1" max="100" value="50" class="slider" id="range1">
+                <p id="val1" class="descrip">Doesn't Make Sense, Doesn't Not Make Sense 😐</p>
+
             </div>
             <div class="col-4" style="padding-top: 40px; padding-bottom: 50px; text-align: center;">
                 <h6>Engagement</h6>
-                <p id="val2" class="descrip">50%</p>
                 <div class="slidecontainer">
                     <input type="range" min="1" max="100" value="50" class="slider" id="range2">
                 </div>
+                <p id="val2" class="descrip">Not Super Focused 🙉</p>
+
             </div>
             <div class="col-4" style="padding-top: 40px; padding-bottom: 50px; text-align: center;">
                 <h6>Speed</h6>
-                <p id="val3" class="descrip">50%</p>
                 <div class="slidecontainer">
                     <input type="range" min="1" max="100" value="50" class="slider" id="range3">
                 </div>
+                <p id="val3" class="descrip">Just Right 🚶</p>
+
             </div>
         </div>
     </div>
@@ -58,17 +61,52 @@
            data.engagement = slider3.value
         }
 
+        understanding_phrases= [
+        "Crystal Clear 💎",
+        "The teacher should be asking ME questions! 🧠",
+        "I am a rockstar. 🤘",
+        "I've got this! 😎",
+        "Doesn't Make Sense, Doesn't Not Make Sense 😐",
+        "A Little Unclear 😕",
+        "Does Not Compute 💻",
+        "What's going on? ❓",
+        "Where am I? 🗺"
+        ]
+        engagement_phrases= [
+        "I'm locked in 🔒",
+        "Laser Focus 🦸‍♂️",
+        "Tuned in 🎶",
+        "Yeah, I'm Listening 👂",
+        "Not Super Focused 🙉",
+        "Kinda Checked Out ✔",
+        "ZzzZZZZzzz 😴",
+        "It's Like Watching Paint Dry 🎨",
+        "Mentally, I'm in Outer Space 🌌"
+        ] 
+        speed_phrases= [
+        "TOO FAST! 🔥",
+        "Professor Flash ⚡",
+        "Cheetah Mode 😾",
+        "Breezing Through 💨",
+        "Just Right 🚶",
+        "A Literal Snail 🐌",
+        "Pick Up The Pace 🏋️",
+        "Crawling Speed. 👶",
+        "Living on Sloth Time 🦥",
+        "A Glacial Pace 🧊",
+        ]         
+
         // Update the current slider value (each time you drag the slider handle)
         slider1.oninput = function () {
-            output1.innerHTML = this.value + "%";
+            output1.innerHTML = understanding_phrases[Math.round(8-(this.value*8/100))];
         }
 
         slider2.oninput = function () {
-            output2.innerHTML = this.value + "%";
+            output2.innerHTML = engagement_phrases[Math.round(8-(this.value*8/100))];
         }
 
         slider3.oninput = function () {
-            output3.innerHTML = this.value + "%";
+            output3.innerHTML = speed_phrases[Math.round(9-(this.value*9/100))];
         }
         
         async function setId(){

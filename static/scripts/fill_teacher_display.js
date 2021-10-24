@@ -59,10 +59,57 @@ function updateChart(data){
     chart.data.datasets[2].data.push([diff, sum_speed/Math.max(1, DEVICE_IDS.size)])
     
 }
+
+var output1 = document.getElementById("uval");
+var output2 = document.getElementById("sval");
+var output3 = document.getElementById("eval");
+
+understanding_emojis= [
+    "💎",
+    "🧠",
+    "✅",
+    "😎",
+    "😐",
+    "😕",
+    "😒",
+    "❓",
+    "😡"
+    ]
+    engagement_emojis= [
+        "💎",
+        "🧠",
+        "✅",
+        "😎",
+        "😐",
+        "😕",
+        "😒",
+        "❓",
+        "😡"
+    ] 
+    speed_emojis= [
+        "💎",
+        "🧠",
+        "✅",
+        "😎",
+        "😐",
+        "😕",
+        "😒",
+        "❓",
+        "😡"
+    ]     
+
 //refreshing stuff
 var socket = io();
 socket.on(link_name, (newInfo)=>{
     updateChart(newInfo)
-    chart.update()
-    console.log(chart.data)
+    chart.update()    
+
+        // Update the current slider value (each time you drag the slider handle)
+
+        output1.innerHTML = understanding_emojis[Math.round(8-(newInfo.understanding*8/100))];
+        output2.innerHTML = engagement_emojis[Math.round(8-(newInfo.engagement*8/100))];
+        output3.innerHTML = speed_emojis[Math.round(8-(newInfo.speed*8/100))];
+
+
+    //console.log(chart.data)
 })
