@@ -1,7 +1,6 @@
 const link_name = window.location.pathname
 
 function updateChart(data){
-    console.log(DEVICE_IDS);
     const diff = ((new Date())-startTime)/1000;
 
     if (!(DEVICE_IDS.has(data.device_id))) {
@@ -9,20 +8,17 @@ function updateChart(data){
         DEVICE_IDS.add(data.device_id)
 
         var underst = {
-            x: diff,
-            y: data.understanding,
+            data: [[diff,parseInt(data.understanding)]],
             label: data.device_id + " u",
             borderColor: "rgba(255, 0, 0, 0.1)"
         };
         var speed = {
-            x: diff,
-            y: data.speed,
+            data: [[diff,parseInt(data.speed)]],
             label: data.device_id + " s",
             borderColor: "rgba(0, 255, 0, 0.1)"
         };
         var engage = {
-            x: diff,
-            y: data.engagement,
+            data: [[diff,parseInt(data.engagement)]],
             label: data.device_id + " e",
             borderColor: "rgba(0, 0, 255, 0.1)"
         };
@@ -36,18 +32,37 @@ function updateChart(data){
         const ui = chart.data.datasets.map(e => e.label).indexOf(data.device_id+" u")
         const ei = chart.data.datasets.map(e => e.label).indexOf(data.device_id+" e")
         const si = chart.data.datasets.map(e => e.label).indexOf(data.device_id+" s")
-
         chart.data.datasets[ui].data.push([diff, data.understanding])
         chart.data.datasets[ei].data.push([diff, data.engagement])
         chart.data.datasets[si].data.push([diff, data.speed])
     }
-    console.log(chart.data.datasets)
+    sum_understanding = 0
+    sum_engagement = 0
+    sum_speed = 0
+
+    chart.data.datasets.slice(3).forEach(element => {
+        if (element.label.slice(-1)[0] == "u") {
+            sum_understanding += parseInt(element.data.slice(-1)[0][1])
+            console.log(element.data.slice(-1)[0])
+        }
+        else if (element.label.slice(-1)[0] == "e") {
+            sum_engagement += parseInt(element.data.slice(-1)[0][1])
+        }
+        else {
+            sum_speed += parseInt(element.data.slice(-1)[0][1])
+        }
+    });
+    console.log(sum_understanding.typeof)
+    console.log(DEVICE_IDS.size)
+    chart.data.datasets[0].data.push([diff, sum_understanding/Math.max(1, DEVICE_IDS.size)])
+    chart.data.datasets[1].data.push([diff, sum_engagement/Math.max(1, DEVICE_IDS.size)])
+    chart.data.datasets[2].data.push([diff, sum_speed/Math.max(1, DEVICE_IDS.size)])
     
 }
 //refreshing stuff
 var socket = io();
 socket.on(link_name, (newInfo)=>{
-    console.log("new")
     updateChart(newInfo)
     chart.update()
+    console.log(chart.data)
 })
