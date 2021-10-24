@@ -21,10 +21,22 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             const startTime = new Date();
-            const DATA_COUNT = 7;
-            const NUMBER_CFG = {count: DATA_COUNT, rmin: 1, rmax: 1, min: 0, max: 100};
             const DEVICE_IDS = new Set();
-
+            var mean_underst = {
+                data: [[0,50]],
+                label: "mean u",
+                borderColor: "rgba(255, 0, 0, 1)"
+            };
+            var mean_speed = {
+                data: [[0,50]],
+                label: "mean s",
+                borderColor: "rgba(0, 255, 0, 1)"
+            };
+            var mean_engage = {
+                data: [[0,50]],
+                label: "mean e",
+                borderColor: "rgba(0, 0, 255, 1)"
+            };
           const config = {
             type: 'scatter',
             data: {},
@@ -55,6 +67,11 @@
                 document.getElementById('chart'),
                 config
             );
+
+            chart.data.datasets.push(mean_underst);
+            chart.data.datasets.push(mean_speed);
+            chart.data.datasets.push(mean_engage);
+
         </script>
         <script src="/scripts/fill_teacher_display.js"></script>
 
