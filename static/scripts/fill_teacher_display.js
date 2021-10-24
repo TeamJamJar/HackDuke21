@@ -57,6 +57,10 @@ function updateChart(data){
     chart.data.datasets[0].data.push([diff, sum_understanding/Math.max(1, DEVICE_IDS.size)])
     chart.data.datasets[1].data.push([diff, sum_engagement/Math.max(1, DEVICE_IDS.size)])
     chart.data.datasets[2].data.push([diff, sum_speed/Math.max(1, DEVICE_IDS.size)])
+
+    output1.innerHTML = sum_understanding/Math.max(1, DEVICE_IDS.size)
+    output2.innerHTML = sum_engagement/Math.max(1, DEVICE_IDS.size)
+    output3.innerHTML = sum_speed/Math.max(1, DEVICE_IDS.size)
     
 }
 
