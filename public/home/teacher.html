@@ -8,6 +8,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
+        <h1 id="roomiddisplay"></h1>
+        <script>
+            const iddisplay = document.getElementById("roomiddisplay")
+            iddisplay.textContent = "Room ID: " + window.location.pathname.slice(6)
+        </script>
         <div>
             <canvas id="chart"></canvas>
         </div>

@@ -36,7 +36,9 @@ function updateChart(data){
         const ui = chart.data.datasets.map(e => e.label).indexOf(data.device_id+" u")
         const ei = chart.data.datasets.map(e => e.label).indexOf(data.device_id+" e")
         const si = chart.data.datasets.map(e => e.label).indexOf(data.device_id+" s")
-
+        console.log(ui)
+        console.log(chart.data)
+        console.log(chart.data.datasets[ui])
         chart.data.datasets[ui].data.push([diff, data.understanding])
         chart.data.datasets[ei].data.push([diff, data.engagement])
         chart.data.datasets[si].data.push([diff, data.speed])
