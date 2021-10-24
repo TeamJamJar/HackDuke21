@@ -104,17 +104,23 @@ understanding_emojis= [
 
 //refreshing stuff
 var socket = io();
+
+var last_updated = new Date()
+
 socket.on(link_name, (newInfo)=>{
 
     if (!(newInfo.notification=="")) {
         alert(newInfo.notification);
     }
 
-
     updateChart(newInfo)
-    chart.update()    
 
-        // Update the current slider value (each time you drag the slider handle)
+    if(new Date() - last_updated > 299){ 
+        last_updated = new Date()
+        chart.update()    
+    }
+
+    // Update the current slider value (each time you drag the slider handle)
 
     output1.innerHTML = understanding_emojis[Math.round(8-(newInfo.understanding*8/100))];
     output2.innerHTML = engagement_emojis[Math.round(8-(newInfo.engagement*8/100))];
