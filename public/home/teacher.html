@@ -24,6 +24,7 @@
             type: 'scatter',
             data: {},
             options: {
+                showLine: true,
                 responsive: true,
                 plugins: {
                 legend: {
@@ -32,6 +33,11 @@
                 title: {
                     display: true,
                     text: 'Student Engagement (Raw Data)'
+                },
+                elements: {
+                    point:{
+                        radius: 0
+                    }
                 }
                 }
             },
