@@ -32,5 +32,5 @@ app.use('/', homeRoutes);
 
 //404 message
 app.use((req,res)=>{
-    res.sendFile(path.join(__dirname,'public','404.html'));
+    res.sendFile(path.join(__dirname,'public','home', 'home.html'));
 });

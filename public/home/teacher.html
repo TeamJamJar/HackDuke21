@@ -8,7 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <h1 id="body">PASTA</h1>
         <div>
             <canvas id="chart"></canvas>
         </div>
@@ -16,24 +15,14 @@
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
+            const startTime = new Date();
             const DATA_COUNT = 7;
             const NUMBER_CFG = {count: DATA_COUNT, rmin: 1, rmax: 1, min: 0, max: 100};
+            const DEVICE_IDS = new Set();
 
-            const labels = [1,2,3,4,5,6,7];
-            const rawdata = {
-            labels: labels,
-            datasets: [
-                {
-                label: 'Student 1',
-                data: [3,2,6,5,3,2,1],
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgb(255,177,193)',
-                }
-            ]
-            };
           const config = {
             type: 'scatter',
-            data: rawdata,
+            data: {},
             options: {
                 responsive: true,
                 plugins: {
@@ -42,7 +31,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Chart.js Scatter Chart'
+                    text: 'Student Engagement (Raw Data)'
                 }
                 }
             },
@@ -52,14 +41,6 @@
                 document.getElementById('chart'),
                 config
             );
-
-            function addData(chart, label, data) {
-                chart.data.labels.push(Math.random()*10);
-                chart.data.datasets[0].data.push(Math.random()*10);
-                console.log(chart.data.datasets[0].data)
-
-                chart.update();
-            }
         </script>
         <script src="/scripts/fill_teacher_display.js"></script>
 
