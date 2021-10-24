@@ -62,10 +62,6 @@ function updateChart(data){
     chart.data.datasets[1].data.push([diff, sum_engagement/Math.max(1, DEVICE_IDS.size)])
     chart.data.datasets[2].data.push([diff, sum_speed/Math.max(1, DEVICE_IDS.size)])
 
-    output1.innerHTML = sum_understanding/Math.max(1, DEVICE_IDS.size)
-    output2.innerHTML = sum_engagement/Math.max(1, DEVICE_IDS.size)
-    output3.innerHTML = sum_speed/Math.max(1, DEVICE_IDS.size)
-
     output1.innerHTML = understanding_emojis[Math.round(8-((sum_understanding/Math.max(1, DEVICE_IDS.size)))*8/100)];
     output2.innerHTML = engagement_emojis[Math.round(8-((sum_engagement/Math.max(1, DEVICE_IDS.size))*8/100))];
     output3.innerHTML = speed_emojis[Math.round(8-((sum_speed/Math.max(1, DEVICE_IDS.size))*8/100))];
@@ -85,17 +81,6 @@ understanding_emojis= [
     "😡"
     ]
     engagement_emojis= [
-        "💎",
-        "🧠",
-        "✅",
-        "😎",
-        "😐",
-        "😕",
-        "😒",
-        "😴",
-        "🙃"
-    ] 
-    speed_emojis= [
         "🏇",
         "🏃‍♂️",
         "⏩",
@@ -105,6 +90,17 @@ understanding_emojis= [
         "🐌",
         "🛌",
         "🧊"
+    ] 
+    speed_emojis= [
+        "💎",
+        "🧠",
+        "✅",
+        "😎",
+        "😐",
+        "😕",
+        "😒",
+        "😴",
+        "🙃"
     ]     
 
 //refreshing stuff
