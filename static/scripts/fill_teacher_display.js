@@ -126,12 +126,5 @@ socket.on(link_name, (newInfo)=>{
         chart.update()    
     }
 
-    // Update the current slider value (each time you drag the slider handle)
-
-    output1.innerHTML = understanding_emojis[Math.round(8-(newInfo.understanding*8/100))];
-    output2.innerHTML = engagement_emojis[Math.round(8-(newInfo.engagement*8/100))];
-    output3.innerHTML = speed_emojis[Math.round(8-(newInfo.speed*8/100))];
-
-
     //console.log(chart.data)
 })
