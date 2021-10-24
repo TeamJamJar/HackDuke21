@@ -1,5 +1,9 @@
 const link_name = window.location.pathname
 
+var output1 = document.getElementById("uval");
+var output2 = document.getElementById("sval");
+var output3 = document.getElementById("eval");
+
 function updateChart(data){
     const diff = ((new Date())-startTime)/1000;
 
@@ -61,12 +65,13 @@ function updateChart(data){
     output1.innerHTML = sum_understanding/Math.max(1, DEVICE_IDS.size)
     output2.innerHTML = sum_engagement/Math.max(1, DEVICE_IDS.size)
     output3.innerHTML = sum_speed/Math.max(1, DEVICE_IDS.size)
+
+    output1.innerHTML = understanding_emojis[Math.round(8-((sum_understanding/Math.max(1, DEVICE_IDS.size)))*8/100)];
+    output2.innerHTML = engagement_emojis[Math.round(8-((sum_engagement/Math.max(1, DEVICE_IDS.size))*8/100))];
+    output3.innerHTML = speed_emojis[Math.round(8-((sum_speed/Math.max(1, DEVICE_IDS.size))*8/100))];
     
 }
 
-var output1 = document.getElementById("uval");
-var output2 = document.getElementById("sval");
-var output3 = document.getElementById("eval");
 
 understanding_emojis= [
     "💎",
@@ -110,16 +115,10 @@ socket.on(link_name, (newInfo)=>{
         alert(newInfo.notification);
     }
 
-
     updateChart(newInfo)
     chart.update()    
 
-        // Update the current slider value (each time you drag the slider handle)
-
-    output1.innerHTML = understanding_emojis[Math.round(8-(newInfo.understanding*8/100))];
-    output2.innerHTML = engagement_emojis[Math.round(8-(newInfo.engagement*8/100))];
-    output3.innerHTML = speed_emojis[Math.round(8-(newInfo.speed*8/100))];
-
+    // Update the current slider value (each time you drag the slider handle)
 
     //console.log(chart.data)
 })
